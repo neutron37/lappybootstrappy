@@ -1,4 +1,3 @@
-
 # iterm2
 brew cask install iterm2
   # Don’t display the annoying prompt when quitting iTerm
@@ -41,8 +40,8 @@ brew cask install atom
 open /Applications/Atom.app
 
 # VSCode
-brew cask install visual-studio-code
-open /Applications/Visual\ Studio\ Code.app
+# brew cask install visual-studio-code
+# open /Applications/Visual\ Studio\ Code.app
 
 # ShiftIt
 brew cask install shiftit
@@ -120,3 +119,30 @@ npm install -g localtunnel
 
 # Install spotify
 brew cask install spotify
+
+# Install Thunderbird
+brew cask install thunderbird
+
+# Install Tutanota
+brew cask install tutanota
+
+# Install Vitamin-R
+brew cask install vitamin-r
+open '/Applications/Vitamin-R 3.app'
+atom ~/Documents/licenses/vitamin-r.license.yaml
+
+# Install Ableton 9 Suite
+brew tap homebrew/cask-versions
+brew cask install ableton-live-suite9
+
+# Install Little Snitch
+brew cask install little-snitch
+open '/usr/local/Caskroom/little-snitch/4.4.2/LittleSnitch-4.4.2.dmg'
+sleep 10
+open '/Volumes/Little Snitch 4.4.2/Little Snitch Installer.app'
+atom ~/Documents/licenses/little-snitch.license
+
+# Install Micro snitch
+brew cask install micro-snitch
+open '/Applications/Micro Snitch.app'
+atom ~/Documents/licenses/micro-snitch-dual.license
