@@ -103,10 +103,13 @@ open /Applications/Alfred\ 4.app
 open https://github.com/stuartcryan/custom-iterm-applescripts-for-alfred/blob/master/custom_iterm_script_iterm_3.1.1.applescript
 
 # Install useful commands
-brew install wget ripgrep loc watch most
+brew install wget ripgrep loc watch most telnet
 
 # Install PHP stuff
 brew install php@7.1 composer
+
+# Install PHP Storm
+brew cask install phpstorm
 
 # Install etcher
 brew cask install balenaetcher
@@ -146,3 +149,13 @@ atom ~/Documents/licenses/little-snitch.license
 brew cask install micro-snitch
 open '/Applications/Micro Snitch.app'
 atom ~/Documents/licenses/micro-snitch-dual.license
+
+# Install Kindle
+brew cask install kindle
+
+# Install JAVA (OpenJDK)
+brew cask install java
+
+# Install Symfony
+curl -sS https://get.symfony.com/cli/installer | bash
+mv /Users/user1/.symfony/bin/symfony /usr/local/bin/symfony
