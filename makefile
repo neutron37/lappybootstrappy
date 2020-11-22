@@ -2,11 +2,6 @@ SHELL = /bin/bash
 
 UNAME_S := $(shell uname -s)
 
-# Generate ssh key and display pubkey.
-ssh_keygen:
-	@echo "======== SSH Keygen ==================================================="
-	$(BASHLIB_SRC_DIR)/ssh_keygen.sh
-
 # Set shell defaults to support Susudoio
 set_shell_defaults:
 	@echo "======== Ensuring Dotfile Defaults ===================================="
@@ -33,4 +28,4 @@ endif
 endif # ifeq ($(UNAME_S),Darwin)
 
 # Install
-install: ssh_keygen set_shell_defaults prerequisites
+install: set_shell_defaults prerequisites
