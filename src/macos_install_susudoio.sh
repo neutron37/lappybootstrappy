@@ -22,7 +22,7 @@ source "${BASHLIB_DIR}/bashlib.sh"
 
 # Make susudoio available when using MacOS.
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  bashlib::msg_stdout  "Installing neutron37 susudoio."
+  bashlib::msg_stdout  "* Ensuring neutron37 susudoio is available."
 
   # Ensure .local/bin
   if [ ! -d ~/.local/bin ]; then
@@ -46,5 +46,3 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ln -s ~/.local/share/susudoio/susudoio ~/.local/bin/
   fi
 fi
-
-bashlib::msg_stdout  "------------------------------------------------------------"

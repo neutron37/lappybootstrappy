@@ -1,24 +1,16 @@
 #!/usr/bin/env bash
-set -x
 
-# Set hostname
-sudo scutil --set HostName MBP2019.satori.us
-sudo scutil --set LocalHostName MBP2019.lan
-sudo scutil --set ComputerName MBP2019
-dscacheutil -flushcache
+# Don’t display the annoying prompt when quitting iTerm
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
-# Set sleep options for battery
-sudo pmset -b displaysleep 1 disksleep 1 sleep 5
+# Install OhMyZsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Set sleep options for charger (wall power)
-sudo pmset -c displaysleep 5 disksleep 5 sleep 5
-
-# Disable the sudden motion sensor as it’s not useful for SSDs
-sudo pmset -a sms 0
-
-# Reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# Install OhMyZsh plugins
+# brew install zsh-autosuggestions
+# brew install zsh-navigation-tools
+# brew install zsh-syntax-highlighting
+# brew install zsh-completions
 
 # Turn on dark mode
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'

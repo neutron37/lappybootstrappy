@@ -20,13 +20,25 @@ source "${BASHLIB_DIR}/bashlib.sh"
 # END bashlib include boilerplate.                               #
 ##################################################################
 
-# Make brew available if it's not installed already.
-bashlib::print_cmd   '[ -d $HOME/.ssh ] || mkdir -p "${HOME}/.ssh"'
-                      [ -d $HOME/.ssh ] || mkdir -p "${HOME}/.ssh"
-bashlib::print_cmd   '[ -f $HOME/.ssh/id_rsa ] || ssh-keygen -b4096 -f"${HOME}/.ssh/id_rsa"'
-                      [ -f $HOME/.ssh/id_rsa ] || ssh-keygen -b4096 -f"${HOME}/.ssh/id_rsa"
-bashlib::print_cmd   'cat "${HOME}/.ssh/id_rsa.pub"'
-bashlib::msg_stdout   "$STYLE_MAGENTA********* Add this key to your git account! ******************$STYLE_GREEN $STYLE_BOLD"
-                      cat "${HOME}/.ssh/id_rsa.pub"
-bashlib::msg_stdout   "$STYLE_NORMAL$STYLE_MAGENTA**************************************************************"
-bashlib::msg_stdout  "$STYLE_NORMAL------------------------------------------------------------"
+bashlib::check_admin
+
+if [ -z ${SUSUDOIO_TARGET+x} ]; then
+  echo "$STYLE_RED This script must be invoked via susudoio.$STYLE_NORMAL"
+  exit 37
+fi
+
+if [ ! -f /opt/homebrew/bin/brew ]; then
+  echo "Installing homebrew."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$SUSUDOIO_TARGET/.zprofile
+fi
+
+# Make extra sure that brew is available.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+HOSTNAME=$1
+
+bash $BASHLIB_THIS_DIR/macos_tasks_0_su.sh $HOSTNAME
+bash $BASHLIB_THIS_DIR/macos_tasks_1_admin.sh
+sudo -H -u $SUSUDOIO_TARGET bash $BASHLIB_THIS_DIR/macos_tasks_2_user.sh

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # <<YAMLDOC
 # namespace: /neutron37/lappybootstrappy
-# description: "Ansible Content Project"
+# description: "Content Project"
 # copyright: "Neutron37"
 # authors: "neutron37@hauskreativ.com"
-# tags: bootstrap macbook laptop ansible docker devkit
+# tags: bootstrap macbook laptop docker
 # YAMLDOC
 
 ##################################################################
@@ -22,6 +22,7 @@ while [ -h "${BASHLIB_SOURCE}" ]; do
 done
 BASHLIB_THIS_DIR=$( dirname ${BASHLIB_SOURCE} )
 export BASHLIB_THIS_DIR=$( cd -P $BASHLIB_THIS_DIR && pwd )
+
 export BASHLIB_DIR="${BASHLIB_THIS_DIR}/src/bashlib"
 if [ ! -d "${BASHLIB_DIR}" ]; then
   echo "------------------------------------------------------------"
@@ -40,6 +41,7 @@ source "${BASHLIB_DIR}/bashlib.sh"
 lbs::logo() {
   echo -n "${STYLE_MAGENTA}"
   cat <<"EOF"
+
   ┏━━━━━━━━━━━━━━┓
   ┃  LAPPY _/    ┃
   ┃  BOOTSTRAPPY ┃
@@ -50,23 +52,8 @@ EOF
 }
 
 lbs::help() {
-
   lbs::logo
-
-  # Read always returns non-zero
-  # Because of "set -e" we must prepend '!'
-  # Quoting the sentinel, HELP, prevents expansion in the text block.
-  ! read -d '' MSG_HELP <<"HELP"
-
-usage: lapybootstrappy.sh [--help] <subcommand>
-
-These are the valid subcommands:
-  install: Install it!
-
-These are the valid flags:
-  --help          Display this help.
-HELP
-  bashlib::msg_stdout "${MSG_HELP}"
+  bashlib::msg_stdout "   usage:  ${STYLE_BOLD}lapybootstrappy.sh <hostname>${STYLE_NORMAL}"
   bashlib::exit_success ""
 }
 
@@ -77,7 +64,7 @@ if [ -z "$*" ]; then
   lbs::help
 fi
 
-COMMAND="$@"
+HOSTNAME="$1"
 
 ##########
 ## Main ##
@@ -88,5 +75,14 @@ if [ -z ${@+x} ]; then
 fi
 
 trap '' ERR
-make "$@"
+
+lbs::logo
+$BASHLIB_SRC_DIR/macos_install_susudoio.sh
+~/.local/bin/susudoio -a src/macos_install.sh $HOSTNAME
+open '/Applications/Docker.app'
+open '/Applications/Alfred 4.app'
+open '/Applications/Little Snitch.app'
+open '/Applications/Micro Snitch.app'
+open '/Applications/Rectangle.app'
+
 exit "$?"

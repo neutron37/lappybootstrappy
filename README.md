@@ -1,8 +1,6 @@
-## LappyBootstrappy - Work In Progress
+## LappyBootstrappy
 
-I'd like this script to support MacOS, Linux, and BSD one day. For now it's only tested for MacOS.
-
-The project has been restarted with simplicity in mind.
+Sets up a fresh MacBook from scratch.
 
 ## Author
 
