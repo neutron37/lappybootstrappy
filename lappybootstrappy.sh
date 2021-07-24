@@ -85,4 +85,12 @@ open '/Applications/Little Snitch.app'
 open '/Applications/Micro Snitch.app'
 open '/Applications/Rectangle.app'
 
+echo
+echo "Secure that shit, Hudson!"
+echo " * https://bash-prompt.net/guides/bash-ssh-yubikey/"
+echo " * https://aditsachde.com/posts/yubikey-ssh/"
+echo " * https://github.com/vorburger/vorburger.ch-Notes/blob/develop/security/ed25519-sk.md"
+echo " * https://github.com/drduh/macOS-Security-and-Privacy-Guide"
+echo " * https://github.com/drduh/YubiKey-Guide"
+
 exit "$?"
